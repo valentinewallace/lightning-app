@@ -17,6 +17,9 @@ deploy:
   api_key:
     secure: PKqg4oiwnMXWpCw0TbllcJibz/jSJZI7M7EMfZQnI4HQd5k7jUO9RKMr0TdnH5cPARlIZT+fhHa6Aj5vlbPxRaVokqRYHORltuX9nAKHnWa+pVRs51jW1yC90FaiSu8VV0d8sdFMAozefPhDu6MXAQAS49lVpbrbKkksBvi0lv+mi6nbaSbAZghaXSOm7tcMzskGyTP+yOvEsmMaJ2yJfyqcxJ6Q/fKCBn+ZpInyAAddDkxhWAmkYrF9qHmnEXQU/Zwki1YfHLtdBKyZ2gBPZUbzjBs10jSlvnril3thWNsKpKG7s3utTTu5rVk3Tn1PrBKkY0WE1YVsLhMCjOck8TSjmCbZinApoK+59Ko8djrl/3eSMSIfwha7VBo30eaaw2hIzYvI9FyRHgRdp8zXLdnkW4bCUc6jbHM0RVYkC25hMjum9BmyIONPaW28dRY2O6aCDdr6zeWn9nJhYl+AZN4CCeyFijBE69PpEJR29+Mk0btha+viUX1kUy61Vy2KX0foYOOzp1JZJvN6w/Lv/ZZc7U9wQP9BShRPbhQKV/JF26mWSBsXvYELgIcEXsjx726E6jSLxQsr4uvaAb5cMT12iM+ChhRZ3OM5kb0GI7CiV8CmljzuF5ea8Lnc3DG+0d7ky8RL8PRriZGn6c9s/z2Gpzv1ui2O/hpDg75M1DQ=
   file: Lightning*
+  skip_cleanup: true
   on:
     repo: valentinewallace/lightning-app
     tags: true
+  prerelease: true
+
