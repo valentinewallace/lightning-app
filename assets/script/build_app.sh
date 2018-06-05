@@ -22,6 +22,7 @@ else
     --env ELECTRON_CACHE="/root/.cache/electron" \
     --env DEBUG=electron-builder \
     --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
+    --env DEBUG=electron-builder \
     -v ${PWD}:/project \
     -v ${PWD##*/}-node-modules:/project/node_modules \
     -v ~/.cache/electron:/root/.cache/electron \
