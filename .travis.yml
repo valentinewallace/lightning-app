@@ -27,6 +27,8 @@ cache:
 before_install:
   - ./assets/script/install_lnd.sh
 
+install: travis_wait 50 mvn install
+
 script:
   - npm test
   - npm run build-storybook
