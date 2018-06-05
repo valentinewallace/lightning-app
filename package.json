@@ -71,6 +71,7 @@
     "wait-on": "^2.1.0"
   },
   "build": {
+    "buildDependenciesFromSource": true,
     "appId": "engineering.lightning.lightning-app",
     "publish": {
       "provider": "github",
