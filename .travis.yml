@@ -13,7 +13,7 @@ matrix:
 
 env:
   global:
-    - secure: "JM64XBK3zx13Dn+adsldtwVHOLyZ1kwqvRby3Q7awEq6HBm9xJJ1TEo3y6vCyqkUyGocd8e+wLm7rUW6ryhXUpdTDH744mfreCuZ5Al/12O2E8fHmv4wpGRrdqhzayWFPcLVmLtlak6QCFCp60q3g9o73107JpYgSA/6G/IdIS5JACo2AOOomimfcEl+Kum6zdkAGoZQIObKRfamFfZ9CebfEZ2HXjfACu4mX3a0fwoOoXLYv7gVEVGKTdtLwC8OCbvPPNP74zoq4U3kGST0xtma3gIIgsSsxmRGj00O6tfOZypwzx3JZacgFqTlI0EjNtd+MD/DiBZ196lyWiTLDCWJ/y4cechat2qDVtLdlpsSXabaXPZanx1aVAy5SITwhBkWe8HONrjVx1ViynPGAtN5lM9EUwrTqNHbvEIVouzxZQiGHH7ynhTYn/uURrC/ZiEzjRawizxeUQKoehvC8ydLLRWBvATEv6r4hz+wH7hpdk2RDdPM24iilIvnViwkkbehOdEV7fHDkKwkmhZ0NCeNTDXNqJtka+SxWjREhSetbMQib8mJlLtMoulVlCWUvwMbMnDVB3W1Jn6UmSwFYrgoEGpUR+64cANSETTuv/hhr08Ucn97tE+oFlw4eox1S3A7kZ3RQxqE+KAdu4gHVervvSvyZL2UJqXeiBETF7M="
+    - secure: "m+fjrLftutYPtcRtEwMOdsv0HcRbddoJojUnEV1bkahdJA+YUeXuBwviRDlMeemh8JuFETblpiE1XNmeeIM9Ii8H+zzZPI3k/MHrfztae6cWoJqAkVvWKkft/wd4+7AQRQn5lh1FHHmwXAZV8d79wDfy5/VBWBD0EZtzjaeA7Cc6u4HnY7pfZH5fyoZ1G4WHLDnRXrh3eBZIzCad0J9JqLb3mycV/fIX15+YTOGt5pV9nJY2TS9wJhLjlnxZJaOr19gv/qJSGQAn+gul6s/XZxQGSiX8Q17CjaMpsR9gQt9Fwxi6f3dOzqIVd2VfFLaHPqXp2YyvpjSHzmdiwd9Ear6+txZgDF8JoAfyTIxiok1kEmXXjya8qSqIW/yvHzfnAmqdpvYMqxyP5+v+hdjDDLPHRfNPWevEo54YhN70/1fWjw9FL+sHqDk8sb4KUA7DahOyXNmHfGRek54TJNnLTNcB5OFrn+6q1/J5uWxF/f2qXJI9hjfgzlw1SJaM7pEzo4criTWssP5Afb4RCli40a668vULUXDKQsFMI2BHjtKZD92aHfyUQAV5FnmuLci6XZg8s1BuyBt2VdbnO8A4OeQMMmN7D+HsZiV0yi5UTlaDTiFO2ldsCuvoFjn74CuzRRWot9BJW7zwd13RYSC1bYoh5sf09Fx+oFa8c+RkMlE="
     - NAP_TIME=20000
     - ELECTRON_CACHE=$HOME/.cache/electron
     - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
@@ -36,8 +36,10 @@ deploy:
   script: ./assets/script/build_app.sh
   skip_cleanup: true
   on:
-    repo: lightninglabs/lightning-app
+    repo: valentinewallace/lightning-app
+    branch: activate-travis-releases
     tags: true
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
+
