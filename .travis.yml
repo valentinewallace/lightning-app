@@ -35,7 +35,6 @@ deploy:
   provider: script
   script: ./assets/script/build_app.sh
   skip_cleanup: true
-  draft: true
   on:
     repo: valentinewallace/lightning-app
     branch: activate-travis-releases
