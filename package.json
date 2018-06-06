@@ -73,9 +73,6 @@
   },
   "build": {
     "appId": "engineering.lightning.lightning-app",
-    "npmArgs": [
-      "--target-libc=unknown"
-    ],
     "publish": {
       "provider": "github",
       "vPrefixedTagName": true,
