@@ -28,17 +28,19 @@ before_install:
   - ./assets/script/install_lnd.sh
 
 script:
-  - travis_wait 30 npm test
-  - travis_wait 30 npm run build-storybook
+  - npm test
+  - npm run build-storybook
 
 deploy:
   provider: script
   script: ./assets/script/build_app.sh
   skip_cleanup: true
+  draft: true
   on:
     repo: valentinewallace/lightning-app
     branch: activate-travis-releases
     tags: true
+
 
 before_cache:
   - rm -rf $HOME/.cache/electron-builder/wine
