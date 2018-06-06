@@ -71,8 +71,10 @@
     "wait-on": "^2.1.0"
   },
   "build": {
-    "buildDependenciesFromSource": true,
     "appId": "engineering.lightning.lightning-app",
+    "npmArgs": [
+      "--target-libc=unknown"
+    ],
     "publish": {
       "provider": "github",
       "vPrefixedTagName": true,
