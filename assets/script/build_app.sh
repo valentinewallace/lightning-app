@@ -16,7 +16,7 @@ else
   # build the packages using electron-builder on docker
   cd $TRAVIS_BUILD_DIR
   env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS_TAG|TRAVIS|TRAVIS_REPO_|TRAVIS_BUILD_|TRAVIS_BRANCH|TRAVIS_PULL_REQUEST_|APPVEYOR_|CSC_|GH_|GITHUB_|BT_|AWS_|STRIP|BUILD_' > env.txt
-  travis_wait 50 docker run --rm \
+  docker run --rm \
     --env-file env.txt \
     --env HOME="/project" \
     --env ELECTRON_CACHE="/root/.cache/electron" \
