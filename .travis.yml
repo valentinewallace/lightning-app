@@ -35,6 +35,9 @@ deploy:
   provider: script
   script: ./assets/script/build_app.sh
   skip_cleanup: true
+  file_glob: true
+  file:
+  - dist/*
   on:
     repo: valentinewallace/lightning-app
     branch: activate-travis-releases
