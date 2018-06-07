@@ -4,7 +4,7 @@ const os = require('os');
 const path = require('path');
 const url = require('url');
 const isDev = require('electron-is-dev');
-const log = require('electron-log');
+autoUpdater.logger = require('electron-log');
 const { startLndProcess, startBtcdProcess } = require('./lnd-child-process');
 const grcpClient = require('./grpc-client');
 const {
@@ -39,10 +39,10 @@ let win;
 let lndProcess;
 let btcdProcess;
 
-log.transports.console.level = 'info';
-log.transports.file.level = 'info';
-ipcMain.on('log', (event, arg) => log.info(...arg));
-ipcMain.on('log-error', (event, arg) => log.error(...arg));
+autoUpdater.logger.transports.console.level = 'info';
+autoUpdater.logger.transports.file.level = 'info';
+ipcMain.on('log', (event, arg) => autoUpdater.logger.info(...arg));
+ipcMain.on('log-error', (event, arg) => autoUpdater.logger.error(...arg));
 
 let logQueue = [];
 let logsReady = false;
@@ -56,11 +56,11 @@ const sendLog = log => {
 };
 const Logger = {
   info: msg => {
-    log.info(msg);
+    autoUpdater.logger.info(msg);
     sendLog(msg);
   },
   error: msg => {
-    log.error(msg);
+    autoUpdater.logger.error(msg);
     sendLog(`ERROR: ${msg}`);
   },
 };
