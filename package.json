@@ -1,12 +1,13 @@
 {
   "name": "lightning-app",
-  "version": "0.2.0-prealpha.5",
+  "version": "0.2.0-prealpha.8",
   "description": "Lightning Wallet Application",
   "author": "Lightning Labs, Inc",
   "homepage": "./",
   "license": "GPL-3.0",
   "private": true,
   "main": "public/electron.js",
+  "repository": "github:valentinewallace/lightning-app",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
