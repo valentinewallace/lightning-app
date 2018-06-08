@@ -24,20 +24,10 @@ cache:
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
 
-before_install:
-  - ./assets/script/install_lnd.sh
-
-script:
-  - npm test
-  - npm run build-storybook
-
 deploy:
   provider: script
   script: ./assets/script/build_app.sh
   skip_cleanup: true
-  file_glob: true
-  file:
-  - dist/*
   on:
     repo: valentinewallace/lightning-app
     branch: activate-travis-releases
