@@ -1,6 +1,6 @@
 {
   "name": "lightning-app",
-  "version": "0.2.0-prealpha.11",
+  "version": "0.2.0-prealpha.9",
   "description": "Lightning Wallet Application",
   "author": "Lightning Labs, Inc",
   "homepage": "./",
@@ -76,8 +76,7 @@
     "publish": {
       "provider": "github",
       "vPrefixedTagName": true,
-      "publishAutoUpdate": true,
-      "releaseType": "draft"
+      "publishAutoUpdate": true
     },
     "mac": {
       "category": "Network",
