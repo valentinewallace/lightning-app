@@ -7,7 +7,6 @@
   "license": "GPL-3.0",
   "private": true,
   "main": "public/electron.js",
-  "repository": "github:valentinewallace/lightning-app",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
