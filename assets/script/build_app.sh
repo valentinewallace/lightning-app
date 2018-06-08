@@ -6,12 +6,13 @@ GOROOT=$HOME/go
 PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 if [ "$(uname)" == "Darwin" ]; then
-  npm run electron-pack -- --mac
+#  npm run electron-pack -- --mac
+   echo "hi"
 else
   # build binaries for windows
-  cd assets/bin/win32
-  env GOOS="windows" GOARCH="386" go build -v github.com/lightningnetwork/lnd
-  env GOOS="windows" GOARCH="386" go build -v github.com/btcsuite/btcd
+#  cd assets/bin/win32
+#  env GOOS="windows" GOARCH="386" go build -v github.com/lightningnetwork/lnd
+# env GOOS="windows" GOARCH="386" go build -v github.com/btcsuite/btcd
 
   # build the packages using electron-builder on docker
   cd $TRAVIS_BUILD_DIR
@@ -27,6 +28,6 @@ else
     -v ~/.cache/electron:/root/.cache/electron \
     -v ~/.cache/electron-builder:/root/.cache/electron-builder \
     electronuserland/builder:wine \
-    /bin/bash -c "npm i && npm run electron-pack -- --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- --linux"
+    /bin/bash -c "npm i && npm run electron-pack -- --linux"
   rm env.txt
 fi
