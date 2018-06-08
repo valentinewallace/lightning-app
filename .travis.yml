@@ -24,8 +24,9 @@ cache:
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
 
-before_install:
-  - ./assets/script/install_lnd.sh
+install: echo "hi, install"
+
+script: echo "hi, script"
 
 deploy:
   provider: script
