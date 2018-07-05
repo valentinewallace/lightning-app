@@ -29,6 +29,6 @@ else
     -v ~/.cache/electron:/root/.cache/electron \
     -v ~/.cache/electron-builder:/root/.cache/electron-builder \
     electronuserland/builder:wine \
-    /bin/bash -c "echo $HOME && npm i && npm run electron-pack -- --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- --linux"
+    /bin/bash -c "echo $HOME && echo "about to run npm i" && pwd && npm i && npm run electron-pack -- --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- --linux"
   rm env.txt
 fi
