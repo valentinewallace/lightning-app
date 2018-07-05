@@ -10,9 +10,9 @@ if [ "$(uname)" == "Darwin" ]; then
    echo "hi"
 else
   # build binaries for windows
-#  cd assets/bin/win32
-#  env GOOS="windows" GOARCH="386" go build -v github.com/lightningnetwork/lnd
-# env GOOS="windows" GOARCH="386" go build -v github.com/btcsuite/btcd
+  cd assets/bin/win32
+  env GOOS="windows" GOARCH="386" go build -v github.com/lightningnetwork/lnd
+  env GOOS="windows" GOARCH="386" go build -v github.com/btcsuite/btcd
 
   # build the packages using electron-builder on docker
   cd $TRAVIS_BUILD_DIR
@@ -21,7 +21,6 @@ else
     --env-file env.txt \
     --env HOME="/project" \
     --env ELECTRON_CACHE="/root/.cache/electron" \
-    --env DEBUG=electron-builder \
     --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
     --env DEBUG=electron-builder \
     -v ${PWD}:/project \
