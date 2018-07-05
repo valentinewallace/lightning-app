@@ -38,6 +38,6 @@ deploy:
     tags: true
 
 
-before_cache:
-  - rm -rf $HOME/.cache/electron-builder/wine
+    # before_cache:
+    #  - rm -rf $HOME/.cache/electron-builder/wine
 

@@ -10,9 +10,9 @@ if [ "$(uname)" == "Darwin" ]; then
    echo "hi"
 else
   # build binaries for windows
-#  cd assets/bin/win32
-#  env GOOS="windows" GOARCH="386" go build -v github.com/lightningnetwork/lnd
-# env GOOS="windows" GOARCH="386" go build -v github.com/btcsuite/btcd
+  cd assets/bin/win32
+  env GOOS="windows" GOARCH="386" go build -v github.com/lightningnetwork/lnd
+  env GOOS="windows" GOARCH="386" go build -v github.com/btcsuite/btcd
 
   # build the packages using electron-builder on docker
   cd $TRAVIS_BUILD_DIR
@@ -20,7 +20,6 @@ else
   docker run --rm \
     --env-file env.txt \
     --env ELECTRON_CACHE="/root/.cache/electron" \
-    --env DEBUG=electron-builder \
     --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
     --env DEBUG=electron-builder \
     -v ${PWD}:/project \
@@ -28,6 +27,6 @@ else
     -v ~/.cache/electron:/root/.cache/electron \
     -v ~/.cache/electron-builder:/root/.cache/electron-builder \
     electronuserland/builder:wine \
-    /bin/bash -c "npm i && npm run electron-pack -- --linux"
+    /bin/bash -c "echo $HOME && npm i && npm run electron-pack -- --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- --linux"
   rm env.txt
 fi
