@@ -24,12 +24,12 @@ else
     --env ELECTRON_CACHE="/root/.cache/electron" \
     --env ELECTRON_BUILDER_CACHE="/root/.cache/electron-builder" \
     --env DEBUG=electron-builder \
-    --env HOME=/project \
+    --env HOME="/project" \
     -v ${PWD}:/project \
     -v ${PWD##*/}-node-modules:/project/node_modules \
     -v ~/.cache/electron:/root/.cache/electron \
     -v ~/.cache/electron-builder:/root/.cache/electron-builder \
     electronuserland/builder:wine \
-    /bin/bash -c "echo $HOME && pwd && ls -la && whoami && chown -R root:root /project && npm i && npm run electron-pack -- --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- --linux"
-  rm env.txt
+    /bin/bash -c "echo $HOME && cat env.txt && pwd && ls -la && whoami && chown -R root:root /project && npm i && npm run electron-pack -- --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- --linux"
+  rm -f env.txt
 fi
