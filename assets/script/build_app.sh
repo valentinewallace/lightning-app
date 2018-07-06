@@ -6,6 +6,7 @@ GOROOT=$HOME/go
 PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 echo "home: $HOME"
 pwd
+whoami
 
 if [ "$(uname)" == "Darwin" ]; then
 #  npm run electron-pack -- --mac
