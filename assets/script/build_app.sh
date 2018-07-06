@@ -32,6 +32,6 @@ else
     -v ~/.cache/electron-builder:/root/.cache/electron-builder \
     electronuserland/builder:wine \
     /bin/bash -c "echo $HOME && cat env.txt && pwd && ls -la && whoami && chown -R root:root /project && npm i && npm run electron-pack -- --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- --linux"
-  sudo chown travis:travis ./
+  sudo chown -R travis:travis ./
   rm env.txt
 fi
