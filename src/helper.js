@@ -2,7 +2,12 @@
  * @fileOverview helper and utility functions that can be reused go here.
  */
 
-import { UNITS, LND_INIT_DELAY, RETRY_DELAY } from './config';
+import {
+  UNITS,
+  LND_INIT_DELAY,
+  RETRY_DELAY,
+  MAX_AMT_LEN,
+} from './config';
 
 /**
  * Format a number value in locale format with either . or ,
@@ -290,4 +295,35 @@ export const retry = async (api, interval = 100, retries = 1000) => {
     await nap(interval);
   }
   return null;
+};
+
+export const parseAmountInput = (text, isFiat = true) => {
+  if (isFiat) {
+    return parseFiatAmount(text);
+  }
+  let beforeDecimal, afterDecimal;
+  [ beforeDecimal, ...afterDecimal ] = text.split('.');
+  afterDecimal = afterDecimal.join('').replace(/\D/g, '');
+  beforeDecimal = parseInt(beforeDecimal.replace(/\D/g, ''), 10);
+  return `${beforeDecimal}.${afterDecimal}`;
+};
+
+const parseFiatAmount = text => {
+  let stripped = text.replace(/\D/g, '');
+  console.log(`stripped: ${stripped}`);
+  let amount = parseInt(stripped, 10).toString();
+  console.log(`amount in parseFiatAmount: ${amount}`);
+  if (amount.length <= 1) {
+    return Number(`0.0${amount}`).toFixed(2);
+  } else if (amount.length === 2) {
+    return Number(`0.${amount}`).toFixed(2);
+  }
+  const len = amount.length;
+  let beforeDecimal = amount.slice(0, len - 2);
+  console.log("beforeDecimal = ", beforeDecimal);
+  let afterDecimal = amount.slice(len - 2, len);
+  console.log("afterDecimal = ", afterDecimal);
+  let rv = `${beforeDecimal}.${afterDecimal}`;
+  console.log(`rv: ${rv}`);
+  return rv;
 };

@@ -8,6 +8,7 @@ import {
   toSatoshis,
   toAmount,
   parseSat,
+  parseAmountInput,
   isLnUri,
   isAddress,
   nap,
@@ -71,7 +72,8 @@ class PaymentAction {
    * @param {string} options.amount The string formatted number
    */
   setAmount({ amount }) {
-    this._store.payment.amount = amount;
+    let parsedAmount = parseAmountInput(amount, this._store.displayFiat);
+    this._store.payment.amount = parsedAmount;
   }
 
   /**

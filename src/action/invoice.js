@@ -4,7 +4,7 @@
  */
 
 import { PREFIX_URI } from '../config';
-import { toSatoshis } from '../helper';
+import { toSatoshis, parseAmountInput } from '../helper';
 
 class InvoiceAction {
   constructor(store, grpc, nav, notification, clipboard) {
@@ -34,7 +34,17 @@ class InvoiceAction {
    * @param {string} options.amount The string formatted number
    */
   setAmount({ amount }) {
-    this._store.invoice.amount = amount;
+    console.log("amount in invoice.setAmount:");
+    console.log(amount);
+    console.log(typeof amount);
+    console.log(amount.length);
+    if (this._store.invoice.amount.length > 1 && amount.length === 0) {
+      return;
+    }
+    console.log(`this._store.displayFiat: ${this._store.settings.displayFiat}`);
+    let parsedAmount = parseAmountInput(amount, this._store.settings.displayFiat);
+    console.log(`setting invoice.amount: ${parsedAmount}`);
+    this._store.invoice.amount = parsedAmount;
   }
 
   /**

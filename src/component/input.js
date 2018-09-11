@@ -46,6 +46,7 @@ export class HorizontalExpandingTextInput extends Component {
   }
   render() {
     const { value, charWidth, onChangeText, style, ...props } = this.props;
+    console.log(`value in HorizontalExpandingTextInput: ${value}`);
     return (
       <TextInput
         value={value || this.state.text}

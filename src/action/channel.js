@@ -3,7 +3,7 @@
  * call the corresponding GRPC apis for channel management.
  */
 
-import { toSatoshis, parseSat } from '../helper';
+import { toSatoshis, parseSat, parseAmountInput } from '../helper';
 import * as log from './log';
 
 class ChannelAction {
@@ -35,7 +35,8 @@ class ChannelAction {
    * @param {string} options.amount The string formatted number
    */
   setAmount({ amount }) {
-    this._store.channel.amount = amount;
+    let parsedAmount = parseAmountInput(amount, this._store.displayFiat);
+    this._store.channel.amount = parsedAmount;
   }
 
   /**
