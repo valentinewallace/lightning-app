@@ -26,6 +26,9 @@ cache:
 before_install:
   - ./assets/script/install_lnd.sh
 
+script:
+  - npm run test:unit
+
 deploy:
   provider: script
   script: ./assets/script/build_app.sh
