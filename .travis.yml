@@ -26,17 +26,12 @@ cache:
 before_install:
   - ./assets/script/install_lnd.sh
 
-script:
-  - npm audit
-  - npm test
-  - npm run build-storybook
-
 deploy:
   provider: script
   script: ./assets/script/build_app.sh
   skip_cleanup: true
   on:
-    repo: lightninglabs/lightning-app
+    repo: valentinewallace/lightning-app
     tags: true
 
 before_cache:
