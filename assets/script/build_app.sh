@@ -31,7 +31,7 @@ else
     -v ~/.cache/electron:/root/.cache/electron \
     -v ~/.cache/electron-builder:/root/.cache/electron-builder \
     electronuserland/builder:wine \
-    /bin/bash -c "chown -R root:root /project && npm i && npm run electron-pack -- -c.beforeBuild=./assets/script/before_build.js --win -c.npmArgs=--target-libc=unknown && npm run electron-pack -- -c.beforeBuild=./assets/script/before_build.js --linux"
+    /bin/bash -c "chown -R root:root /project && npm i && CI=false npm run electron-pack -- -c.beforeBuild=./assets/script/before_build.js --win -c.npmArgs=--target-libc=unknown && CI=false npm run electron-pack -- -c.beforeBuild=./assets/script/before_build.js --linux"
   sudo chown -R travis:travis ./
   rm env.txt
 fi
