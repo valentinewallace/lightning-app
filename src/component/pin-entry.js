@@ -1,10 +1,66 @@
 import React from 'react';
 import { StyleSheet, View, ViewPropTypes } from 'react-native';
 import PropTypes from 'prop-types';
-import Text from './text';
-import Button from './button';
+import Background from '../component/background';
+import MainContent from '../component/main-content';
+import { Header } from '../component/header';
+import { CopyOnboardText, Text } from '../component/text';
+import Button, { BackButton } from './button';
+import { FormStretcher } from '../component/form';
 import BackspaceIcon from '../asset/icon/backspace';
 import { color } from './style';
+
+//
+// Set Pin Base
+//
+
+const setPinStyles = StyleSheet.create({
+  content: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+  backWrapper: {
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  title: {
+    marginTop: 30,
+  },
+  text: {
+    marginTop: 10,
+    textAlign: 'center',
+    maxWidth: 250,
+  },
+});
+
+export const SetPinBase = ({ back, title, copy, pin, pushDigit, popDigit }) => (
+  <Background image="purple-gradient-bg">
+    <View style={setPinStyles.backWrapper}>
+      <BackButton onPress={() => back()} />
+    </View>
+    <MainContent style={setPinStyles.content}>
+      <CopyOnboardText style={setPinStyles.title}>{title}</CopyOnboardText>
+      <Text style={setPinStyles.text}>{copy}</Text>
+      <FormStretcher>
+        <PinBubbles pin={pin} />
+      </FormStretcher>
+      <PinKeyboard
+        onInput={digit => pushDigit(digit)}
+        onBackspace={() => popDigit()}
+      />
+    </MainContent>
+  </Background>
+);
+
+SetPinBase.propTypes = {
+  goBack: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  copy: PropTypes.string,
+  pin: PropTypes.string.isRequired,
+  pushDigit: PropTypes.func.isRequired,
+  popDigit: PropTypes.func.isRequired,
+};
 
 //
 // Pin Entry

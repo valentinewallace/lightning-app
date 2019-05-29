@@ -94,7 +94,11 @@ class AuthAction {
       return;
     }
     await this._setToKeyStore(PIN, newPin);
-    await this._generateWalletPassword();
+    if (this._store.walletUnlocked) {
+      this._nav.goResetPasswordSaved();
+    } else {
+      await this._generateWalletPassword();
+    }
   }
 
   /**
