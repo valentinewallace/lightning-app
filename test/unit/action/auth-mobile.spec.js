@@ -99,6 +99,13 @@ describe('Action AuthMobile Unit Tests', () => {
       auth.popPinDigit({ param: 'pinVerify' });
       expect(nav.goSetPassword, 'was called once');
     });
+
+    it('should go back to settings if resetting and empty string', () => {
+      store.auth.newPin = '';
+      store.walletUnlocked = true;
+      auth.popPinDigit({ param: 'newPin' });
+      expect(nav.goSettings, 'was called once');
+    });
   });
 
   describe('checkNewPin()', () => {
@@ -134,6 +141,15 @@ describe('Action AuthMobile Unit Tests', () => {
       await auth.checkNewPin();
       expect(Alert.alert, 'was called once');
       expect(SecureStore.setItemAsync, 'was not called');
+      expect(auth._generateWalletPassword, 'was not called');
+    });
+
+    it('should go to ResetPasswordSaved if wallet unlocked', async () => {
+      store.auth.newPin = '000000';
+      store.auth.pinVerify = '000000';
+      store.walletUnlocked = true;
+      await auth.checkNewPin();
+      expect(nav.goResetPasswordSaved, 'was called once');
       expect(auth._generateWalletPassword, 'was not called');
     });
   });

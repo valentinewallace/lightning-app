@@ -75,6 +75,8 @@ class AuthAction {
     const { auth } = this._store;
     if (auth[param]) {
       auth[param] = auth[param].slice(0, -1);
+    } else if (param === 'newPin' && this._store.walletUnlocked) {
+      this._nav.goSettings();
     } else if (param === 'pinVerify') {
       this.initSetPin();
     }
@@ -94,7 +96,11 @@ class AuthAction {
       return;
     }
     await this._setToKeyStore(PIN, newPin);
-    await this._generateWalletPassword();
+    if (this._store.walletUnlocked) {
+      this._nav.goResetPasswordSaved();
+    } else {
+      await this._generateWalletPassword();
+    }
   }
 
   /**
