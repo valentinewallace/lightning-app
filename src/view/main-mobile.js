@@ -122,13 +122,7 @@ const Home = () => (
 );
 
 const Settings = () => (
-  <SettingView
-    store={store}
-    nav={nav}
-    wallet={wallet}
-    autopilot={autopilot}
-    auth={auth}
-  />
+  <SettingView store={store} nav={nav} autopilot={autopilot} auth={auth} />
 );
 
 const SettingsUnit = () => (
