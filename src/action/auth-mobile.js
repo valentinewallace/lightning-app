@@ -236,6 +236,8 @@ class AuthAction {
    */
   async _unlockWallet() {
     const storedPass = await this._getFromKeyStore(PASS);
+    console.log("storedPass:")
+    console.log(storedPass)
     this._store.wallet.password = storedPass;
     await this._wallet.checkPassword();
   }
@@ -251,6 +253,9 @@ class AuthAction {
   }
 
   _setToKeyStore(key, value) {
+    console.log("setting to key store! key then value")
+    console.log(key)
+    console.log(value)
     const options = {
       accessible: this._Keychain.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
     };

@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 import * as Random from 'expo-random';
 import * as LocalAuthentication from 'expo-local-authentication';
+import RNICloudStore from 'react-native-icloudstore';
 import * as Keychain from 'react-native-keychain';
 import RNFS from 'react-native-fs';
 import { NavigationActions, StackActions } from 'react-navigation';
@@ -72,7 +73,6 @@ export const auth = new AuthAction(
   Platform
 );
 export const autopilot = new AtplAction(store, grpc, db, notify);
-
 payment.listenForUrlMobile(Linking); // enable incoming url handler
 
 //
@@ -112,10 +112,12 @@ when(
  */
 when(
   () => store.lndReady,
-  () => {
+  async () => {
+    console.log("lndReady fired")
     wallet.pollBalances();
     wallet.pollExchangeRate();
     channel.pollChannels();
+    console.log("just called channel.pollChannels")
     transaction.update();
     info.pollInfo();
   }
@@ -132,3 +134,31 @@ when(
     autopilot.init();
   }
 );
+
+let printBackup = async () => {
+      console.log("in async func...")
+      let iCloudBackup = await RNICloudStore.getItem('testnetChannelBackup');
+      console.log("iCloudBackup at the beginning of printBackup:")
+      console.log(iCloudBackup)
+      const lndDir = RNFS.DocumentDirectoryPath;
+      console.log(lndDir)
+      console.log(store.logs.toLowerCase().includes("testnet"))
+      // const dbPath = `${lndDir}/data/chain/bitcoin/testnet/channel.backup`;
+      // console.log("about to read the file at");
+      // console.log(dbPath);
+      // let backup;
+      // try {
+      //   backup = await RNFS.readFile(dbPath, 'base64');
+      //   console.log(backup);
+      //   console.log("just logged backup");
+      // } catch(error) {
+      //   console.log("errored in try:")
+      //   console.log(error)
+      // }
+      let backup = "test2";
+      await RNICloudStore.setItem("testnetChannelBackup", backup)
+      iCloudBackup = await RNICloudStore.getItem('testnetChannelBackup');
+      console.log("iCloudBackup at the end of printBackup:")
+      console.log(iCloudBackup)
+}
+printBackup();
